@@ -15,21 +15,21 @@ jobs:
           wget -O archive.zip "https://www.dropbox.com/scl/fi/05moufzv4axmpmw5ydv79/d8602234-17d1-11f0-9659-3c7c3f3bedc4.zip?rlkey=1egh5e7h94yx1fy1jmvkkd54f&dl=1"
           unzip archive.zip -d .
 
-          xcodebuild archive -project buildios.xcodeproj -scheme 'buildios' -archivePath buildios.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild archive -project karyn_notes.xcodeproj -scheme 'karyn_notes' -archivePath karyn_notes.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
           mkdir Payload
-          mv buildios.xcarchive/Products/Applications/buildios.app Payload/buildios.app
+          mv karyn_notes.xcarchive/Products/Applications/karyn_notes.app Payload/karyn_notes.app
 
-          zip -r "buildios.ipa" "Payload"
+          zip -r "karyn_notes.ipa" "Payload"
 
-          mv buildios.ipa ${{ runner.temp }}/buildios.ipa
+          mv karyn_notes.ipa ${{ runner.temp }}/karyn_notes.ipa
 
 
       - name: Upload application
         uses: actions/upload-artifact@v4
         with:
-          name: buildios
-          path: ${{ runner.temp }}/buildios.ipa
+          name: karyn_notes
+          path: ${{ runner.temp }}/karyn_notes.ipa
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
           retention-days: 3
